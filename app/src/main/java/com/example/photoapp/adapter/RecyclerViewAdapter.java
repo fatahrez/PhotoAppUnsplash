@@ -1,5 +1,6 @@
 package com.example.photoapp.adapter;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,6 +35,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public void onBindViewHolder(@NonNull RecyclerViewAdapter.MyViewHolder holder, int position) {
         holder.tvAltDescription.setText(photoList.get(position).getAltDescription());
         Picasso.get().load(photoList.get(position).getUrls().getThumb()).resize(200, 200).into(holder.imageView);
+        int color = Color.parseColor(photoList.get(position).getColor());
+        holder.tvColorArea.setBackgroundColor(color);
     }
 
     @Override
@@ -44,12 +47,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         TextView tvAltDescription;
         ImageView imageView;
+        TextView tvColorArea;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
             tvAltDescription = (TextView) itemView.findViewById(R.id.altDescriptionTextView);
             imageView = (ImageView) itemView.findViewById(R.id.imageView);
+            tvColorArea = (TextView) itemView.findViewById(R.id.colorAreaTextView);
         }
     }
 
